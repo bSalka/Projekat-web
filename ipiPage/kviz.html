@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Kviz o HTML-u</title>
+    <link rel="stylesheet" href="css/kviz.css" />
+  </head>
+  <body>
+    <h1>Kviz o HTML-u</h1>
+    <hr />
+    <center>
+      <p>
+        Dobrodošli u studentski kviz! Testirajte svoje znanje o HTML-u i
+        osnovama weba.
+      </p>
+      <p>
+        Odaberite tačan odgovor(e) za svako pitanje. Neki mogu imati više tačnih
+        opcija!
+      </p>
+    </center>
+
+    <form id="quizForm">
+      <!-- Pitanje 1 -->
+      <p><b>1. Šta znači skraćenica HTML?</b></p>
+      <label
+        ><input type="radio" name="html_znacenje" value="tačno" /> HyperText
+        Markup Language</label
+      ><br />
+      <label
+        ><input type="radio" name="html_znacenje" value="pogrešno" /> High Text
+        Markdown Language</label
+      ><br />
+      <label
+        ><input type="radio" name="html_znacenje" value="pogrešno" /> Hyper Text
+        Makeup Language</label
+      ><br />
+
+      <br />
+
+      <!-- Pitanje 2 -->
+      <p><b>2. Koje se oznake koriste za izradu popisa u HTML-u?</b></p>
+      <label
+        ><input type="checkbox" name="oznaka_popis" value="ul" />
+        &lt;ul&gt;</label
+      ><br />
+      <label
+        ><input type="checkbox" name="oznaka_popis" value="li" />
+        &lt;li&gt;</label
+      ><br />
+      <label
+        ><input type="checkbox" name="oznaka_popis" value="ol" />
+        &lt;ol&gt;</label
+      ><br />
+      <label
+        ><input type="checkbox" name="oznaka_popis" value="pogrešno" />
+        &lt;br&gt;</label
+      ><br />
+      <label
+        ><input type="checkbox" name="oznaka_popis" value="pogrešno" />
+        &lt;div&gt;</label
+      ><br />
+
+      <br />
+
+      <!-- Pitanje 3 -->
+      <p><b>3. Koja se oznaka koristi za umetanje slike u HTML-u?</b></p>
+      <label
+        ><input type="radio" name="oznaka_slika" value="pogrešno" />
+        &lt;image&gt;</label
+      ><br />
+      <label
+        ><input type="radio" name="oznaka_slika" value="tačno" />
+        &lt;img&gt;</label
+      ><br />
+      <label
+        ><input type="radio" name="oznaka_slika" value="pogrešno" />
+        &lt;src&gt;</label
+      ><br />
+
+      <br />
+
+      <!-- Pitanje 4 -->
+      <p><b>4. Koji od sljedećih su valjani HTML atributi?</b></p>
+      <label
+        ><input type="checkbox" name="html_atributi" value="tačno" />
+        href</label
+      ><br />
+      <label
+        ><input type="checkbox" name="html_atributi" value="tačno" /> src</label
+      ><br />
+      <label
+        ><input type="checkbox" name="html_atributi" value="pogrešno" />
+        bold</label
+      ><br />
+      <label
+        ><input type="checkbox" name="html_atributi" value="tačno" /> alt</label
+      ><br />
+
+      <br />
+
+      <!-- Pitanje 5 -->
+      <p><b>5. Koji je ispravan način za stvaranje linkova u HTML-u?</b></p>
+      <label
+        ><input type="radio" name="linkovi" value="pogrešno" />&lt;a
+        url="example.com"&gt;Click&lt;/a&gt;</label
+      ><br />
+      <label
+        ><input type="radio" name="linkovi" value="tačno" />&lt;a
+        href="example.com"&gt;Click&lt;/a&gt;</label
+      ><br />
+      <label
+        ><input
+          type="radio"
+          name="linkovi"
+          value="pogrešno"
+        />&lt;link&gt;Click&lt;/link&gt;</label
+      ><br />
+    </form>
+
+    <br />
+    <button type="button" onclick="checkAnswers()">Provjeri odgovore</button>
+    <center>
+      <b><p id="result"></p></b>
+    </center>
+    <footer>
+      <p>Created by Belma Salkičić | Web programiranje</p>
+    </footer>
+
+    <script>
+      function checkAnswers() {
+        let score = 0;
+        const total = 5;
+
+        // Tačni odgovori
+        const answers = {
+          html_znacenje: ["tačno"],
+          oznaka_popis: ["ul", "li", "ol"],
+          oznaka_slika: ["tačno"],
+          html_atributi: ["tačno", "tačno", "tačno"], // href, src, alt
+          linkovi: ["tačno"],
+        };
+
+        // Pitanje 1
+        const q1 = document.querySelectorAll(
+          'input[name="html_znacenje"]:checked'
+        );
+        if (q1.length && q1[0].value === "tačno") score++;
+
+        // Pitanje 2
+        const q2 = document.querySelectorAll(
+          'input[name="oznaka_popis"]:checked'
+        );
+        const q2Values = Array.from(q2).map((i) => i.value);
+        if (
+          q2Values.length === 3 &&
+          ["ul", "li", "ol"].every((v) => q2Values.includes(v))
+        )
+          score++;
+
+        // Pitanje 3
+        const q3 = document.querySelectorAll(
+          'input[name="oznaka_slika"]:checked'
+        );
+        if (q3.length && q3[0].value === "tačno") score++;
+
+        // Pitanje 4
+        const q4 = document.querySelectorAll(
+          'input[name="html_atributi"]:checked'
+        );
+        const q4Values = Array.from(q4).map((i) => i.value);
+        const correctAttrs = q4Values.filter((v) => v === "tačno");
+        if (correctAttrs.length === 3) score++;
+
+        // Pitanje 5
+        const q5 = document.querySelectorAll('input[name="linkovi"]:checked');
+        if (q5.length && q5[0].value === "tačno") score++;
+
+        document.getElementById(
+          "result"
+        ).textContent = `Osvojili ste ${score} od ${total} poena!`;
+      }
+    </script>
+  </body>
+</html>

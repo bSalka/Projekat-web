@@ -22,7 +22,7 @@ article {
 }
 
 nav {
-  background-color: #c30f10;
+  background-color: #351596;
 }
 
 nav a,
@@ -56,20 +56,18 @@ a,
 a:hover,
 a:visited,
 a:active {
-  color: #c30f10;
+  color: #351596;
   font-weight: bold;
 }
 
 h2,
 h3 {
-  color: #c30f10;
+  color: #40219d;
 }
 
 article {
   padding: 20px 40px;
   box-sizing: border-box;
-
-  border-bottom: 2px solid #c00000;
   min-height: 600px;
 }
 
@@ -138,7 +136,7 @@ label {
 }
 
 input[type="submit"] {
-  background: #c00000;
+  background: #351596;
   color: #fff;
   border: none;
   padding: 12px 20px;
@@ -150,7 +148,7 @@ input[type="submit"] {
   transition: all 0.3s ease;
 }
 input[type="submit"]:hover {
-  background-color: #600202;
+  background-color: #24125c;
 }
 
 .error {
