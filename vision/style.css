@@ -58,7 +58,7 @@ button:hover {
   position: relative;
   width: 90%;
   flex-grow: 1;
-  background: url("slike/pluto.png"); /*tekstura*/
+  background: url("slike/pluto.png");
   background-size: cover;
   border-radius: 12px;
   box-shadow: inset 0 4px 15px rgba(0, 0, 0, 0.3);

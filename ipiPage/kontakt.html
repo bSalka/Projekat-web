@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Kursevi IPI</title>
+    <link rel="stylesheet" href="css/izgled.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" />
+  </head>
+  <body>
+    <header>
+      <a href="index.html">
+        <img src="slike/logo-ipi.png" alt="Kursevi IPI" />
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html">O kursevima</a></li>
+          <li><a href="popis.html">Popis kurseva</a></li>
+          <li><a href="raspored.html">Raspored kurseva</a></li>
+          <li><a href="StudentFunZone.html">Student Fun Zone</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+    </header>
+    <article>
+      <h2>Kontakt</h2>
+      <img src="slike/srce.jpg" alt="Srce" />
+      <p>Do IPI-ja se može doći javnim gradskim prevozom ili taksijem.</p>
+      <p>Naša adresa je:</p>
+      <p>
+        Sveučilišni računski centar<br />
+        Kulina bana br. 2 (Skver)<br />
+        Tuzla 75000<br />
+        Bosna i Hercegovina<br />
+        <a href="mailto:info@ipi-akademija.ba">info@ipi-akademija.ba</a>
+      </p>
+
+      <div class="kontakt-forma">
+        <form id="kontaktForma" novalidate>
+          <label for="ime">Ime i prezime:</label>
+          <input type="text" id="ime" name="ime" required />
+
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="example@mail.com"
+          />
+
+          <span id="emailError" class="error"></span>
+
+          <label for="telefon">Broj telefona:</label>
+          <input
+            type="tel"
+            name="telefon"
+            id="telefon"
+            pattern="[0-9+ ]{6,}"
+            required
+            placeholder="+387..."
+          />
+
+          <label for="poruka">Poruka:</label>
+          <textarea name="poruka" id="poruka" required></textarea>
+
+          <div class="checkbox">
+            <input type="checkbox" id="uslovi" required />
+            <label for="uslovi">Prihvatam uslove korištenja</label>
+          </div>
+          <input type="submit" value="Pošalji" />
+        </form>
+      </div>
+    </article>
+    <footer>
+      &copy; Internacionalna poslovno-informaciona akademija Tuzla
+    </footer>
+
+    <script>
+      const form = document.getElementById("kontaktForma");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        //Polje forme
+        const ime = document.getElementById("ime");
+        const email = document.getElementById("email");
+        const telefon = document.getElementById("telefon");
+        const poruka = document.getElementById("poruka");
+        const uslovi = document.getElementById("uslovi");
+        const emailError = document.getElementById("emailError");
+
+        //regex za email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        let valid = true;
+
+        //greska reset
+        emailError.textContent = "";
+
+        //validacija ime
+        if (ime.value.trim().length < 3) {
+          alert("Unesite puno ime i prezime.");
+          ime.focus();
+          valid = false;
+          return;
+        }
+
+        //validacija emaila
+        if (!emailRegex.test(email.value.trim())) {
+          emailError.textContent =
+            "Unesite ispravan email format (npr.example@mail.com)";
+          email.focus();
+          valid = false;
+          return;
+        }
+
+        // validacija telefona
+        const telefonRegex = /^[0-9+ ]{6,}$/;
+        if (!telefonRegex.test(telefon.value.trim())) {
+          alert("Unesite ispravan broj telefona (minimalno 6 cifara).");
+          telefon.focus();
+          valid = false;
+          return;
+        }
+
+        // validacija poruke
+        if (poruka.value.trim().length < 5) {
+          alert("Poruka mora sadržavati najmanje 5 znakova.");
+          poruka.focus();
+          valid = false;
+          return;
+        }
+
+        //checkbox provjera
+        if (!uslovi.checked) {
+          alert("Morate prihvatiti uslove korištenja!");
+          valid = false;
+          return;
+        }
+
+        if (valid) {
+          alert("Poruka je uspješno poslata! Hvala na kontaktu.");
+          document.getElementById("kontaktForma").reset();
+        }
+      });
+    </script>
+  </body>
+</html>
